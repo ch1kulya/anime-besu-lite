@@ -38,7 +38,7 @@ def watch(movie_id):
 @app.route('/movie_form', methods=['GET', 'POST'])
 @app.route('/movie_form/<int:movie_id>', methods=['GET', 'POST'])
 def movie_form(movie_id=None):
-    top_movies = get_top_movies()  # Получаем топ-10 фильмов
+    top_movies = get_top_movies()  # Получаем топ-15 фильмов
     
     conn = get_db_connection()
     movie = None
