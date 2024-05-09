@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg') }}">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="text-gray-700">
+    <div class="flex flex-wrap content-center justify-center min-h-screen relative">
+        <div class="inscription p-48">
+            <img class="icon absolute h-3/5 w-3/5 star" src="{{ url_for('static', filename='shape1.svg') }}" z-index="1">
+            <h1 class="text-center text-3xl xl:text-5xl lg:text-4xl sm:text-4xl md:text-4xl font-bold my-8 gradient-text" style="position: relative; z-index: 2;">anime bēsu</h1>
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="w-5/6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 px-4 my-8">
+            {% for movie in movies %}
+            <div class="movie h-full">
+                <a href="{{ url_for('watch', movie_id=movie.id) }}"
+                    class="block rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 ease-in h-full flex flex-col">
+                    <img src="{{ movie.banner }}" alt="{{ movie.title }}" class="w-full flex-grow">
+                    <h2 class="text-center text-xl 2xl:text-xl xl:text-lg lg:text-md md:text-md sm:text-lg font-semibold p-4 card-text">
+                        {{ movie.title }}
+                    </h2>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="flex flex-col content-center justify-center mt-8 px-8">
+        <a href="{{ url_for('movie_form') }}"class="footer-text gradient-text">made with ♡ by admin</a>
+    </div>
+</body>
+</html>

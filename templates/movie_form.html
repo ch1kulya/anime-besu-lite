@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="text-gray-700">
+<div class="content-container">
+    <div class="form-container">
+        <h1 class="text-center text-4xl font-bold my-8 gradient-text">Add/Edit Movie</h1>
+        <form method="post" class="w-full max-w-lg mx-auto">
+            <label for="title" class="block text-xl font-semibold p-4 gradient-text">Title:</label>
+            <input type="text" id="title" name="title" value="{{ movie.title if movie else '' }}" required
+                class="form-input">
+
+            <label for="banner" class="block text-xl font-semibold p-4 gradient-text">Banner:</label>
+            <input type="text" id="banner" name="banner" value="{{ movie.banner if movie else '' }}" required
+                class="form-input">
+
+            <label for="video_url" class="block text-xl font-semibold p-4 gradient-text">Video URL:</label>
+            <input type="text" id="video_url" name="video_url" value="{{ movie.video_url if movie else '' }}" required
+                class="form-input">
+
+            <label for="poster" class="block text-xl font-semibold p-4 gradient-text">Poster:</label>
+            <input type="text" id="poster" name="poster" value="{{ movie.poster if movie else '' }}" required
+                class="form-input">
+
+            <label for="description" class="block text-xl font-semibold p-4 gradient-text">Description:</label>
+            <input type="text" id="description" name="description" value="{{ movie.description if movie else '' }}" required
+                class="form-input">
+
+            <input type="submit" value="Save" class="form-button">
+        </form>
+    </div>
+    <div class="table-container">
+        <h1 class="text-center text-4xl font-bold my-8 gradient-text">Stats</h1>
+        <table class="w-full max-w-lg mx-auto text-xl font-semibold p-4 gradient-text">
+            <tr>
+                <th class="p-4">Title</th>
+                <th class="p-4">Views</th>
+            </tr>
+            {% for movie in top_movies %}
+            <tr>
+                <td class="p-2">{{ movie.title }}</td>
+                <td class="p-2">{{ movie.views }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<a href="{{ url_for('index') }}" class="return-link p-12">return to main page</a>
+</div>
+</body>
+</html>
